@@ -112,7 +112,8 @@ Output:
 */
 
 export function makeStringArray(arr) {
-    return [];
+    const strings = arr.map((pet) => pet.name + pet.type);
+    return strings;
 }
 
 /*
@@ -125,7 +126,8 @@ OUTPUT:
 */
 
 export function findByName(name, arr) {
-    return {};
+    const match = arr.filter((pet) => pet.name === name)[0];
+    return match;
 }
 
 /*
@@ -151,7 +153,11 @@ Output:
 */
 
 export function makeArrayOfArraysOfArrays(arr) {
-    return [];
+    const arrays = arr.reduce((acc, curr) => {
+        const thing = [...acc, [['name', curr.name], ['type', curr.type]]];
+        return thing;
+    }, []);
+    return arrays;
 }
 
 ////////////////////////////////////////////////////////
@@ -180,7 +186,8 @@ Output:
 */
 
 export function getCars(arr) {
-    return [];
+    const cars = arr.filter((auto) => auto.type === 'car');
+    return cars;
 }
 
 /*
