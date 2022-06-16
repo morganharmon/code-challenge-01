@@ -154,7 +154,7 @@ Output:
 
 export function makeArrayOfArraysOfArrays(arr) {
     const arrays = arr.reduce((acc, curr) => {
-        const thing = [...acc, [['name', curr.name], ['type', curr.type]]];
+        const thing = [...acc, Object.entries(curr)];
         return thing;
     }, []);
     return arrays;
@@ -200,7 +200,9 @@ Output:
 */
 
 export function getChevyCars(arr) {
-    return [];
+    const chevys = arr.filter((auto) => auto.make === 'chevy');
+    const cars = chevys.filter((chevy) => chevy.type === 'car');
+    return cars;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -217,7 +219,8 @@ Output:
  */
 
 export function makeModelsStringWithReduce(arr) {
-    return '';
+    const string = arr.reduce((acc, curr) => acc + curr.model, '');
+    return string;
 }
 
 /*
@@ -227,7 +230,8 @@ Output: 14
  */
 
 export function getSumOfAges(arr) {
-    return 0;
+    const ages = arr.reduce((acc, curr) => acc + curr.age, 0);
+    return ages;
 }
 
 /*
@@ -241,7 +245,10 @@ Output:
  */
 
 export function makeCountObject(arr) {
-    return {};
+    const fil = arr.filter((auto) => auto.make === 'chevy');
+    const fil2 = fil.filter((auto) => auto.model !== 'camero');    
+    const obj = fil2.reduce((acc, curr) => acc[curr.type] = curr.age, {});
+    return obj;
 }
 
 
@@ -254,5 +261,6 @@ Output:
 
 
 export function makeKeysString(arr) {
-    return '';
+    const string = 'l';
+    return string;
 }
