@@ -245,9 +245,22 @@ Output:
  */
 
 export function makeCountObject(arr) {
-    const fil = arr.filter((auto) => auto.make === 'chevy');
-    const fil2 = fil.filter((auto) => auto.model !== 'camero');    
-    const obj = fil2.reduce((acc, curr) => acc[curr.type] = curr.age, {});
+    const obj = arr.reduce((acc, curr) => {
+        const keys = Object.keys(acc);
+        const length = keys.length;
+        let totem = 1;
+        for(let i = 0; i < length; i++) {
+            if(curr.type === keys[i]) {
+                acc[keys[i]] += 1;
+                totem += 1;
+            }
+        }
+        if(totem === 1) {
+            acc[curr.type] = 1;
+        }
+        totem = 1;
+        return acc;
+    }, {});
     return obj;
 }
 
@@ -261,6 +274,7 @@ Output:
 
 
 export function makeKeysString(arr) {
+    const stuff = Object.entries(arr);
     const string = 'l';
     return string;
 }
