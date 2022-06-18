@@ -274,7 +274,10 @@ Output:
 
 
 export function makeKeysString(arr) {
-    const stuff = Object.entries(arr);
-    const string = 'l';
+    const keys = Object.keys(arr[0]);
+    let string = '';
+    for(let key of keys) {
+        string += key;
+    }
     return string;
 }
