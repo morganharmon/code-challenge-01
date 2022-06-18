@@ -18,7 +18,8 @@ OUTPUT:
 ]*/
 
 export function getDogs(arr) {
-    return [];
+    const dogs = arr.filter((dog) => dog.type === 'dog');
+    return dogs;
 }
 
 /*
@@ -28,7 +29,8 @@ Output:
 */
 
 export function makeArrayOfNames(arr) {
-    return [];
+    const names = arr.map((pet) => pet.name);
+    return names;
 }
 
 /*
@@ -37,7 +39,8 @@ OUTPUT:
 */
 
 export function getNamesOfDogs(arr) {
-    return [];
+    const dogNames = arr.filter((dog) => dog.type === 'dog').map((dog) => dog.name);
+    return dogNames;
 }
 
 /*
@@ -47,7 +50,12 @@ Output:
 */
 
 export function makeReversedArrayOfTypes(arr) {
-    return [];
+    const types = arr.map((pet) => pet.type);
+    const reverse = types.reduce((acc, cur) => {
+        const reverse = [cur, ...acc]; 
+        return reverse;
+    }, []);
+    return reverse;
 }
 
 /*
@@ -62,7 +70,8 @@ Output:
 */
 
 export function makeSpanishLanguageArray(arr) {
-    return [];
+    const span = arr.map((pet) => { return { nombre: pet.name, tipo: pet.type };});
+    return span;
 }
 
 /*
@@ -76,7 +85,8 @@ Output:
 ]*/
 
 export function makeArrayWithIsHungry(arr) {
-     return []
+    const hungry = arr.map((pet) => { return { ...pet, isHungry: true };});
+    return hungry;
 }
 
 /*
@@ -90,7 +100,8 @@ Output:
 ]*/
 
 export function makeShoutingArray(arr) {
-    return [];
+    const shout = arr.map((pet) => { return { name: pet.name.toUpperCase(), type: pet.type };});
+    return shout;
 }
 
 
@@ -101,7 +112,8 @@ Output:
 */
 
 export function makeStringArray(arr) {
-    return [];
+    const strings = arr.map((pet) => pet.name + pet.type);
+    return strings;
 }
 
 /*
@@ -114,7 +126,8 @@ OUTPUT:
 */
 
 export function findByName(name, arr) {
-    return {};
+    const match = arr.filter((pet) => pet.name === name)[0];
+    return match;
 }
 
 /*
@@ -140,7 +153,11 @@ Output:
 */
 
 export function makeArrayOfArraysOfArrays(arr) {
-    return [];
+    const arrays = arr.reduce((acc, curr) => {
+        const thing = [...acc, Object.entries(curr)];
+        return thing;
+    }, []);
+    return arrays;
 }
 
 ////////////////////////////////////////////////////////
@@ -169,7 +186,8 @@ Output:
 */
 
 export function getCars(arr) {
-    return [];
+    const cars = arr.filter((auto) => auto.type === 'car');
+    return cars;
 }
 
 /*
@@ -182,7 +200,9 @@ Output:
 */
 
 export function getChevyCars(arr) {
-    return [];
+    const chevys = arr.filter((auto) => auto.make === 'chevy');
+    const cars = chevys.filter((chevy) => chevy.type === 'car');
+    return cars;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +219,8 @@ Output:
  */
 
 export function makeModelsStringWithReduce(arr) {
-    return '';
+    const string = arr.reduce((acc, curr) => acc + curr.model, '');
+    return string;
 }
 
 /*
@@ -209,7 +230,8 @@ Output: 14
  */
 
 export function getSumOfAges(arr) {
-    return 0;
+    const ages = arr.reduce((acc, curr) => acc + curr.age, 0);
+    return ages;
 }
 
 /*
@@ -223,7 +245,23 @@ Output:
  */
 
 export function makeCountObject(arr) {
-    return {};
+    const obj = arr.reduce((acc, curr) => {
+        const keys = Object.keys(acc);
+        const length = keys.length;
+        let totem = 1;
+        for(let i = 0; i < length; i++) {
+            if(curr.type === keys[i]) {
+                acc[keys[i]] += 1;
+                totem += 1;
+            }
+        }
+        if(totem === 1) {
+            acc[curr.type] = 1;
+        }
+        totem = 1;
+        return acc;
+    }, {});
+    return obj;
 }
 
 
@@ -236,5 +274,10 @@ Output:
 
 
 export function makeKeysString(arr) {
-    return '';
+    const keys = Object.keys(arr[0]);
+    let string = '';
+    for(let key of keys) {
+        string += key;
+    }
+    return string;
 }
